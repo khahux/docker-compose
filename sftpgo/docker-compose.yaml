@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  sftpgo:
+    image: drakkan/sftpgo:v2.3
+    container_name: sftpgo
+    restart: always
+    volumes:
+      - type: bind
+        source: ./sftpgodata
+        target: /srv/sftpgo
+      - type: bind
+        source: ./sftpgohome
+        target: /var/lib/sftpgo
+      - type: bind
+        source: ./sftpgo.json
+        target: /etc/sftpgo/sftpgo.json
+    ports:
+      - 8090:8090
+      - 2022:2022
+    environment:
+      - SFTPGO_HTTPD__BINDINGS__0__PORT=8090
