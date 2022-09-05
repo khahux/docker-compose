@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgis/postgis:13-3.2-alpine
+    container_name: postgres
+    volumes:
+      - /data/db/postgres/data:/var/lib/postgresql/data
+      - /data/db/postgres/backup:/backup
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    ports:
+      - 5432:5432
